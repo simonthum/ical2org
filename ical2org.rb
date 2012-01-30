@@ -136,16 +136,16 @@ OrgEventTemplate = ERB.new <<-'EOT', nil, "%<>"
 % end
   <%= result[:description] %>
 % if (!ev.organizer.nil?)
-    Organizer: <%= ev.organizer %>
+  Organizer: <%= ev.organizer %>
 % end
 % if (!ev.url.nil?)
-    <%= ev.url %>
+  <%= ev.url %>
 % end
 % if (ev.recurs?) then
 %   if (isOrgCompatRepeater?(ev))
-    Occurs: <%= orgDateTime(ev.dtstart, orgRepeaterClause(ev)) %>
+  Recurs: <%= orgTimeSpan(ev.dtstart, ev.dtend, orgRepeaterClause(ev)) %>
 %   else
-    Occurrences: <% ev.occurrences(:overlapping => FILTER_SPAN).each { |occ| %><%= orgTimeSpan(occ.dtstart, occ.dtend) %> <% } %>
+  Occurrences: <% ev.occurrences(:overlapping => FILTER_SPAN).each { |occ| %><%= orgTimeSpan(occ.dtstart, occ.dtend) %> <% } %>
 %   end
 % end
   :ICALENDAR:
@@ -190,10 +190,10 @@ OrgTodoTemplate = ERB.new <<-'EOT', nil, "%<>"
   Location: <%= todo.location %>
 % end
 % if (!todo.organizer.nil?)
-    Organizer: <%= todo.organizer %>
+  Organizer: <%= todo.organizer %>
 % end
 % if (!todo.url.nil?)
-    <%= todo.url %>
+  <%= todo.url %>
 % end
   <%= todo.description %>
 
