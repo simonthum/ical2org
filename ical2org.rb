@@ -75,9 +75,14 @@ def orgTimeSpan(tstart, tend, repeaterClause = nil)
       tstart.day == tend.day) then
     orgTimeSpanShort(tstart, tend, repeaterClause)
   else
-    # use of repeater here is untested in org-mode
     res = orgDateTime(tstart, repeaterClause)
-    res += "--" + orgDateTime(tend) if !tend.nil?
+    # use of repeater in spanning date seems impossible in org-mode
+    # alterntively, this case could be unfolded
+    if (repeaterClause.nil?) then
+      res += "--" + orgDateTime(tend) if !tend.nil?
+    else
+      warn "omission of end time to allow repeater"
+    end
     res
   end
 end
