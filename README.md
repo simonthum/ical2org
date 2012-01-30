@@ -11,7 +11,7 @@ tremendous RiCal gem.
 
 Requires
 
-* ruby (tested with 1.8.7)
+* ruby (tested with standard ruby 1.8.7, 1.9.2)
 * the rical and tzinfo gems
 
 ## Useage
