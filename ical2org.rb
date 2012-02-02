@@ -153,6 +153,7 @@ OrgEventTemplate = ERB.new <<-'EOT', nil, "%<>"
   Occurrences: <% ev.occurrences(:overlapping => FILTER_SPAN).each { |occ| %><%= orgTimeSpan(occ.dtstart, occ.dtend) %> <% } %>
 %   end
 % end
+  <%# uncomment if you have an edit link: = "[[edit:%s][edit %s]]" % [ev.uid, ev.summary]  %>
   :ICALENDAR:
 <%= ev %>
   :END:
@@ -201,7 +202,7 @@ OrgTodoTemplate = ERB.new <<-'EOT', nil, "%<>"
   <%= todo.url %>
 % end
   <%= todo.description %>
-
+  <%# uncomment this if you have an edit link: = "[[edit:%s][edit]]" % [todo.uid]  %>
   :ICALENDAR:
 <%= todo %>
   :END:
