@@ -18,7 +18,7 @@ Requires
 
 Pack ical2org into a script containing roughly
 
-    `ical2org.rb <input.ics | cat my.orgheader - >my_calendar.org`
+    ical2org.rb <input.ics | cat my.orgheader - >my_calendar.org
 
 Yes, this prepends a header which is suggested to at least declare the PROPERTIES
 and ICALENDAR drawers - or, just remove the latter from the built-in org templates.
@@ -30,12 +30,12 @@ script is not fit for round-trip org<->ical synchronization.
 
 The headers I prepend to my synced stuff look approximately like: 
 
-``
-\#+TITLE: Department dates
-\#+DRAWERS: PROPERTIES ICALENDAR
-\#+FILETAGS: :@work:imported:
-\#+LINK: edit https://webstuff.company.com/groupCal/%s.ics/edit
-``
+
+    #+TITLE: Department dates
+    #+DRAWERS: PROPERTIES ICALENDAR
+    #+FILETAGS: :@work:imported:
+    #+LINK: edit https://webstuff.company.com/groupCal/%s.ics/edit
+
 
 The title is pretty straightforward. Next, I declare the two drawers
 so I don't see iCalendar text unless I want to - you can also simply
@@ -44,14 +44,14 @@ cancel the output by removing the ERb tag.
 Next, I declare the tags I use for agenda filtering - including
 "imported" in case I want to get rid of anything not natively org.
 
-The `\#LINK:` part is the cool stuff. It declares an "edit" link type
+The `#LINK:` part is the cool stuff. It declares an "edit" link type
 which points to my stuff in our groupware and has a `%s` where the
 iCal UID is placed. Guess what - my template has a line that (roughly)
 says
 
-``
-\[\[edit:<%= ev.uid %>\]\[edit this in the webby webs\]\]
-``
+
+    [[edit:<%= ev.uid %>][edit this in the webby webs]]
+
 
 Neat, huh? No syncing issues - just edit the origin source. Of course
 this requires a REST-savy web interface, so I've commented out that
