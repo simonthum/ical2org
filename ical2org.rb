@@ -176,8 +176,13 @@ end
 
 # filter events (e.g. by date)
 def includeEvent?(ev)
-  # no, this isn't perfect by no means.
-  return true if (ev.recurs?)
+  begin
+    return true if (ev.recurs? && ev.occurrences(:overlapping => FILTER_SPAN).count > 0)
+  rescue
+    warn "Omitting event with incomprehensible recurrence:"
+    warn ev
+    return false
+  end
   return true if (!ev.dtend.nil? && dateInRange(ev.dtend))
   return true if (dateInRange(ev.dtstart))
   false
