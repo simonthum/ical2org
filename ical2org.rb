@@ -81,7 +81,7 @@ def orgTimeSpan(tstart, tend, repeaterClause = nil)
     if (repeaterClause.nil?) then
       res += "--" + orgDateTime(tend) if !tend.nil?
     else
-      warn "omission of end time to allow repeater"
+      warn "omission of end time to allow repeater: " + orgDateTime(tstart, repeaterClause) + "--" + orgDateTime(tend)
     end
     res
   end
