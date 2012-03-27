@@ -203,7 +203,7 @@ end
 
 OrgTodoTemplate = ERB.new <<-'EOT', nil, "%<>"
 <%#-*- coding: UTF-8 -*-%>
-* <%= results[:orgKeyword] %> <%= todo.summary %>
+* <%= results[:orgKeyword] %><%= results[:orgPrio] %><%= todo.summary %>
   <% if (!todo.due.nil?) then %>DEADLINE: <%= orgDateTime(todo.finish_time) %><% end %><% if (!todo.dtstart.nil?) then %> SCHEDULED: <%= orgDateTime(todo.dtstart) %><% end %>
   :PROPERTIES:
   :ID: <%= todo.uid %>
@@ -239,7 +239,7 @@ OrgKeywordForCompleted = {
 def evaluateTodo(todo)
   { 
     :orgKeyword => OrgKeywordForCompleted[todo.completed],
-    :orgPrio => (!todo.priority.nil? && todo.priority > 1) ? "#C" : "" 
+    :orgPrio => (!todo.priority.nil? && todo.priority > 1) ? "#C " : " " 
   }
 end
 
