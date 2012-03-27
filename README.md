@@ -7,12 +7,24 @@ tremendous RiCal gem.
 
 2012 by Simon Thum (released under CC BY 3.0)
 
+## Features
+
+* Filtering input based on date or todo state (more is easy to add)
+* Proper handling of (most) repeating dates
+* Handles vTODOs, not just events
+* can be adapted to your setup by you ;)
+
+This is intended for ruby-savy people; until it grows command-line
+options that is the conditio sine qua non.
+
 ## Install
 
 Requires
 
 * ruby (tested with standard ruby 1.8.7, 1.9.2)
 * the rical and tzinfo gems
+
+Just invoke using `ruby` or do `chmod u+x ical2org.rb`.
 
 ## Useage
 
@@ -22,11 +34,12 @@ Pack ical2org into a script containing roughly
 
 Yes, this prepends a header which is suggested to at least declare the PROPERTIES
 and ICALENDAR drawers - or, just remove the latter from the built-in org templates.
+In that case, you do not need a header at all.
 
 I recommend setting the resulting files read-only to avoid unwanted changes. This
 script is not fit for round-trip org<->ical synchronization.
 
-### Tips
+## Advanced syncing
 
 The headers I prepend to my synced stuff look approximately like: 
 
