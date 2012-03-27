@@ -67,21 +67,34 @@ def orgTimeSpanShort(st, et, repeaterClause = nil)
   res + ">"
 end
 
-# time span, possibly several days
-def orgTimeSpan(tstart, tend, repeaterClause = nil)
-  # start and end on same date, use short notation
+# either an intra-day vevent or a full day event
+# which "ends the following day"
+def simpleTimeSpan?(tstart, tend)
+  # definite intra-day case
   if (tstart.year == tend.year &&
       tstart.month == tend.month &&
       tstart.day == tend.day) then
+    return true
+  end
+  if (!hasHour?(tend) && (tstart + 1 == tend))
+    return true # "ends the following day"
+  end
+  false
+end
+
+# time span, possibly several days
+def orgTimeSpan(tstart, tend, repeaterClause = nil)
+  # start and end on same date, use short notation
+  if (simpleTimeSpan?(tstart, tend)) then
     orgTimeSpanShort(tstart, tend, repeaterClause)
   else
     res = orgDateTime(tstart, repeaterClause)
     # use of repeater in spanning date seems impossible in org-mode
     # alterntively, this case could be unfolded
     if (repeaterClause.nil?) then
-      res += "--" + orgDateTime(tend) if !tend.nil?
+      res += "--" + orgDateTime(tend -1) if !tend.nil?
     else
-      warn "omission of end time to allow repeater: " + orgDateTime(tstart, repeaterClause) + "--" + orgDateTime(tend)
+      warn "omission of end time to allow repeater: " + orgDateTime(tstart, repeaterClause) + "--" + orgDateTime(tend -1)
     end
     res
   end
