@@ -78,6 +78,7 @@ end
 
 # single-day ical time span?
 def simpleTimeSpan?(tstart, tend)
+  return true if tend.nil?
   tend = fixupEndTime(tend)  
   # test date equality
   if (tstart.day == tend.day &&
