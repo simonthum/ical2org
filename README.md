@@ -5,7 +5,7 @@ An iCalendar to org-mode converter in pure ruby
 Converts iCalendar (rfc2445) to org-mode files using the
 tremendous RiCal gem.
 
-2012 by Simon Thum (released under CC BY 3.0)
+2012 by Simon Thum (released under CC0)
 
 ## Features
 
@@ -81,9 +81,11 @@ but certainly it is far from perfect.
 
 ## License
 
-I declare this work to be useable under the provisions of the CC BY 3.0 license.
+I declare this work to be useable under the provisions of the CC0 license.
 
-http://creativecommons.org/licenses/by/3.0/
+http://creativecommons.org/publicdomain/zero/1.0/
+
+Attribution is appreciated, but not required.
 
 ## Thanks
 

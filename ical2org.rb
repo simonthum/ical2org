@@ -4,6 +4,7 @@
 # tremendous RiCal gem.
 #
 # 2012 by Simon Thum
+#
 # Thanks to Fraunhofer IGD for supporting the publication of this script.
 #
 # Note: This script is intended to be modified to suit your purposes.
@@ -16,6 +17,15 @@
 #
 #
 # Requires rical and tzinfo gems
+#
+# To the extent possible under law, the author(s) have dedicated all
+# copyright and related and neighboring rights to this software to the
+# public domain worldwide. This software is distributed without any
+# warranty.
+# 
+# You should have received a copy of the CC0 Public Domain Dedication
+# along with this software. If not, see
+# http://creativecommons.org/publicdomain/zero/1.0/
 
 require 'rubygems'
 gem 'ri_cal'
