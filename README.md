@@ -54,13 +54,13 @@ The title is pretty straightforward. Next, I declare the two drawers
 so I don't see iCalendar text unless I want to - you can also simply
 cancel the output by removing the ERb tag.
 
-Next, I declare the tags I use for agenda filtering - including
+Then, I declare the tags I use for agenda filtering - including
 "imported" in case I want to get rid of anything not natively org.
 
 The `#LINK:` part is the cool stuff. It declares an "edit" link type
-which points to my stuff in our groupware and has a `%s` where the
-iCal UID is placed. Guess what - my template has a line that (roughly)
-says
+which points to my calendar in our groupware and has a `%s` where the
+iCal UID is normally placed. Guess what - my template has a line that
+(roughly) says
 
 
     [[edit:<%= ev.uid %>][edit this in the webby webs]]
@@ -68,7 +68,7 @@ says
 
 Neat, huh? No syncing issues - just edit the origin source. Of course
 this requires a REST-savy web interface, so I've commented out that
-part in the templates.
+part in the default templates.
 
 ### Notes
 
