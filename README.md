@@ -22,7 +22,7 @@ options that is the conditio sine qua non.
 Requires
 
 * ruby (tested with standard ruby 1.8.7, 1.9.2)
-* the rical and tzinfo gems
+* the ri_cal and tzinfo gems
 
 Just invoke using `ruby` or do `chmod u+x ical2org.rb`.
 
