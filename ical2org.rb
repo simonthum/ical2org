@@ -121,9 +121,10 @@ def orgTimeSpan(tstart, tend, repeaterClause = nil)
 end
 
 # time span and a human-readable hint to the origin TZ
+# assumes ri_cal property values
 def orgTimeSpanTZ(tstart, tend, repeaterClause = nil)
-  res = orgTimeSpan(tstart, tend, repeaterClause)
-  res += " [" + tstart.tzid + "]" if(tstart.respond_to?(:tzid) && tstart.tzid != DEFAULT_TZ)
+  res = orgTimeSpan(tstart.ruby_value(), tend.ruby_value(), repeaterClause)
+  res += " [" + tstart.tzid + "]" if(tstart.respond_to?(:tzid) && !tstart.tzid.nil? && tstart.tzid != DEFAULT_TZ)
   res
 end
 
@@ -167,7 +168,7 @@ OrgEventTemplate = ERB.new <<-'EOT', nil, "%<>"
   :icalCategories: <%= ev.categories.join(" ") %>
   :END:
 % if (!ev.recurs?)
-  <%= orgTimeSpanTZ(ev.dtstart, ev.dtend) %>
+  <%= orgTimeSpanTZ(ev.dtstart_property, ev.dtend_property) %>
 % end
 % if (!ev.location.nil?)
   Location: <%= ev.location %>
