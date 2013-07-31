@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 #
 # Converts iCalendar (rfc2445) to org-mode files using the
 # tremendous RiCal gem.
