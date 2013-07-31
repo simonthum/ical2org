@@ -124,7 +124,7 @@ end
 # assumes ri_cal property values
 def orgTimeSpanTZ(tstart, tend, repeaterClause = nil)
   res = orgTimeSpan(tstart.ruby_value(), tend.ruby_value(), repeaterClause)
-  res += " [" + tstart.tzid + "]" if(tstart.respond_to?(:tzid) && !tstart.tzid.nil? && tstart.tzid != DEFAULT_TZ)
+  res += " [originally " + tstart.tzid + "]" if(tstart.respond_to?(:tzid) && !tstart.tzid.nil? && tstart.tzid != DEFAULT_TZ)
   res
 end
 
