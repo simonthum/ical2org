@@ -33,12 +33,16 @@ gem 'ri_cal'
 gem 'tzinfo'
 require 'erb'
 require 'ri_cal'
+require 'tzinfo'
 
-# e.g. output will be suppressed if default is specified
+# The Timezone Org mode output expects, essentially the local timezone
 DEFAULT_TZ = 'Europe/Berlin'
 
-# see the RiCal docs if Timezones don't work out for you
-::RiCal::PropertyValue::DateTime::default_tzid = DEFAULT_TZ # :floating
+$org_timezone = ::TZInfo::Timezone.get(DEFAULT_TZ)
+
+# The timezone to assume when no timezone is given in an iCal time
+# DEFAULT_TZ, "UTC" or :floating are sensible options
+::RiCal::PropertyValue::DateTime::default_tzid = DEFAULT_TZ
 
 # timespan for filtering (which should really be done by your server/app) and recurrences limitation
 FILTER_SPAN = [Date.today - 90, Date.today + 400]
@@ -47,7 +51,16 @@ FILTER_SPAN = [Date.today - 90, Date.today + 400]
 # WEEKDAYS = %w{So Mo Di Mi Do Fr Sa} # german weekdays
 WEEKDAYS = %w{Su Mo Tu We Th Fr Sa} # english weekdays
 
-# org date (ISO 8601)
+# convert times to Org mode time
+def convertTZ (dt)
+  return dt unless hasHour?(dt)
+  return dt if (dt.has_floating_timezone?)
+  # now convert time (and date)
+  utc = ::TZInfo::Timezone.get(dt.tzid).local_to_utc(dt)
+  utc = $org_timezone.utc_to_local(dt)
+end
+
+# emit org date (ISO 8601)
 def orgDate(t)
   "%04d-%02d-%02d %s" % [t.year, t.month, t.day, (WEEKDAYS[t.wday]) ]
 end
@@ -63,6 +76,7 @@ end
 
 # org date and time string
 def orgDateTime(dt, repeaterClause = nil)
+  dt = convertTZ(dt)
   res = "<" + orgDate(dt)
   res += " " + orgTime(dt) if (hasHour?(dt))
   res += " " + repeaterClause if (!repeaterClause.nil?)
