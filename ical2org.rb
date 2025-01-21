@@ -271,7 +271,7 @@ rescue StandardError => e
   putError(e, todo)
 end
 
-# decide wheter to include/evaluate the VTODO
+# decide whether to include/evaluate the VTODO
 def includeTodo?(todo)
   return true if (todo.status != "COMPLETED" && todo.status != "CANCELLED")
   # if open, see if we care

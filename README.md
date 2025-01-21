@@ -14,7 +14,7 @@ tremendous RiCal gem.
 * Handles vTODOs, not just events
 * can be adapted to your setup by you ;)
 
-This is intended for ruby-savy people; until it grows command-line
+This is intended for ruby-savvy people; until it grows command-line
 options that is the conditio sine qua non.
 
 ## Install
@@ -26,7 +26,7 @@ Requires
 
 Just invoke using `ruby` or do `chmod u+x ical2org.rb`.
 
-## Useage
+## Usage
 
 Pack ical2org into a script containing roughly
 
@@ -67,7 +67,7 @@ iCal UID is normally placed. Guess what - my template has a line that
 
 
 Neat, huh? No syncing issues - just edit the origin source. Of course
-this requires a REST-savy web interface, so I've commented out that
+this requires a REST-savvy web interface, so I've commented out that
 part in the default templates.
 
 ### Notes
